@@ -308,7 +308,7 @@ var app = (function () {
     		c: function create() {
     			input = element("input");
     			attr_dev(input, "type", "file");
-    			add_location(input, file, 46, 0, 1123);
+    			add_location(input, file, 53, 0, 1438);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -353,7 +353,12 @@ var app = (function () {
     		const fileExtensionArray = file.type.split("/");
     		const fileExtension = fileExtensionArray[fileExtensionArray.length - 1];
 
-    		if (allowedFileExtensions.includes(fileExtension) && file.size < maxFileSize) {
+    		if (file.size > maxFileSize) {
+    			console.log("Above the max file size threshold");
+    			return;
+    		}
+
+    		if (fileExtension.includes("csv") && file.size < maxFileSize) {
     			const csvData = papaparse_min.parse(file, {
     				complete: results => {
     					onUpload
@@ -361,6 +366,12 @@ var app = (function () {
     					: console.log("Remember to define an onUpload function as props. Parsed CSV:", results.data);
     				}
     			});
+    		} else if (allowedFileExtensions.includes(fileExtension)) {
+    			onUpload
+    			? onUpload(file)
+    			: console.log("Remember to define an onUpload function as props. Plain file:", file);
+    		} else {
+    			console.log("Not an allowed file type");
     		}
     	}
 
@@ -482,7 +493,7 @@ var app = (function () {
     const app = new UploadCSV({
     	target: document.body,
     	props: {
-    		dataToCSV: [["hello", "nice", "okd"]]
+    		allowedFileExtensions: ['jpeg']
     	}
     });
 

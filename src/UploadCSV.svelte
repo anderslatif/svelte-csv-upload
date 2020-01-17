@@ -29,7 +29,11 @@
 		const fileExtensionArray = file.type.split("/");
 		const fileExtension = fileExtensionArray[fileExtensionArray.length-1];
 
-		if (allowedFileExtensions.includes(fileExtension) && file.size < maxFileSize ) {
+		if (file.size > maxFileSize) {
+			console.log("Above the max file size threshold")
+			return;
+		}
+		if (fileExtension.includes('csv') && file.size < maxFileSize ) {
 
 			const csvData = PapaParse.parse(
 				file,
@@ -39,7 +43,10 @@
 					}
 				}
 			);
-
+		} else if (allowedFileExtensions.includes(fileExtension)) {
+			onUpload ? onUpload(file) : console.log("Remember to define an onUpload function as props. Plain file:", file);
+		} else {
+			console.log("Not an allowed file type");
 		}
 	}
 </script>

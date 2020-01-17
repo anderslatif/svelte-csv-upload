@@ -1,8 +1,9 @@
 {
   "name": "upload-csv-svelte",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "An uploader and parser for CSV files for Svelte",
   "author": "Anders Latif",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anderslatif/svelte-csv-upload"

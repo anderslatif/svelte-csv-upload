@@ -1,6 +1,13 @@
 {
   "name": "upload-csv-svelte",
-  "version": "0.0.2",
+  "version": "0.0.3",
+  "description": "An uploader and parser for CSV files for Svelte",
+  "author": "Anders Latif",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anderslatif/svelte-csv-upload"
+  },
+  "keywords": ["Svelte", "CSV"],
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "svelte": "src/index.js",

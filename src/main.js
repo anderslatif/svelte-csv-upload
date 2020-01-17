@@ -1,9 +1,9 @@
-import App from './App.svelte';
+import UploadCSV from './UploadCSV.svelte';
 
-const app = new App({
+const app = new UploadCSV({
 	target: document.body,
 	props: {
-		name: 'world'
+		dataToCSV: [["hello", "nice", "okd"]]
 	}
 });
 

@@ -1,21 +1,3 @@
-/* import svelte from 'rollup-plugin-svelte';
-import resolve from '@rollup/plugin-node-resolve';
-
-const pkg = require('./package.json');
-
-export default {
-	input: 'src/UploadCSV.svelte',
-	output: [
-		{ file: pkg.module, 'format': 'esm' },
-		{ file: pkg.main, 'format': 'umd', name: 'Name' }
-	],
-	plugins: [
-		svelte(),
-		resolve()
-	],
-};
- */
-
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
@@ -27,11 +9,20 @@ const production = !process.env.ROLLUP_WATCH;
 const pkg = require('./package.json');
 
 export default {
+	// Use when building the module for publishing
 	input: 'src/UploadCSV.svelte',
 	output: [
 		{ file: pkg.module, 'format': 'esm' },
 		{ file: pkg.main, 'format': 'umd', name: 'Name' }
-	],
+	], 
+	// Use when testing the conponent locally
+/* 	input: 'src/main.js',
+	output: {
+		sourcemap: true,
+		format: 'iife',
+		name: 'app',
+		file: 'public/build/bundle.js'
+	}, */
 	plugins: [
 		svelte({
 			// enable run-time checks when not in production

@@ -4,7 +4,7 @@ This creates an upload button that will take any CSV file and parse it into a Ja
 
 ## Usage
 
-`import UploadCSV from 'uploadCSV'`
+`import UploadCSV from 'upload-csv-svelte'`
 
 `<UploadCSV onUpload={(file) => console.log("this is the parsed file: ", file)} />`
 
